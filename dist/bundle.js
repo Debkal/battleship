@@ -1,0 +1,1 @@
+(()=>{"use strict";class t{constructor(t){this.length,hit=0,sunk=!1}hits(t=this.hit){return t++}isSunk(t=this.length,s=this.hit,n=this.sunk){if(t===s)return!0}}const s=new t(7);console.log(s.length);const n=new t(7);console.log(n.length)})();
