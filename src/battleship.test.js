@@ -3,4 +3,4 @@ import {Ship} from './battleship'
 
 const battleship = new Ship;
 
-it('')
+it('inserting a ship into the gameboard')

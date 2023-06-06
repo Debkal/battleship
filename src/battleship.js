@@ -1,22 +1,21 @@
 class Ship {
     constructor(length){
         this.length=length ;
-        this.hit= 0;
+        this.hit=0;
+        this.ship= []
         this.sunk= false;
     }
     hits() {
         return this.hit++;
     }
-    isSunk(length=this.length, hit=this.hit,sunk=this.sunk) {
+    isSunk(length=this.length, hit=this.hit) {
         if(length===hit){
             return this.sunk=true;
         }
     }
 }
 class Gameboard {
-    constructor(x,y){
-        this.x=x;
-        this.y=y;
+    constructor(){
         this.grid = this.createBoard();
         this.horizontal=true;
     }
@@ -24,15 +23,15 @@ class Gameboard {
         const grid = Array(10).fill(null).map((_, i) => Array(10).fill(false))
         return grid;
     }
-    insertShip(ship,grid=this.grid,x=this.x,y=this.y,horizontal=this.horizontal){
+    insertShip(ship,x,y,grid=this.grid,horizontal=this.horizontal){
         if(horizontal===true){
-            for(let i=x;i<x+ship.length;i++){
-                grid[x][y+i]='S';
+            for(let i=0;i<ship.length;i++){
+                grid[x+i][y]='S';
             }
         }
-        else if(horizontal===false){
-            for(let i=y;i<y+ship.length;i++){
-                grid[x+i][y]='S';
+        else{
+            for(let i=0;i<ship.length;i++){
+                grid[x][y+i]='S';
             }
         }
         return;
@@ -42,6 +41,18 @@ class Gameboard {
     }
     notHorizontal(){
         return this.horizontal=false;
+    }
+    receieveAttack(x,y){
+        let result = this.grid[x][y];
+        if(result=='S'){
+            this.grid[x][y] = 'H';
+            let temp = new Ship;
+            return result, temp.hits();
+        }
+        if(result ==false){
+            this.grid[x][y] = 'M';
+            return result;
+        }
     }
     #canPlace(ship){
 

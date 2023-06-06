@@ -1,10 +1,16 @@
 import {Gameboard, Ship} from './battleship.js'
+
 const cruiser = new Ship(3);
-const board = new Gameboard(2,2);
+const battleship = new Ship(5);
+const board = new Gameboard();
 cruiser.hits();
 cruiser.isSunk();
-console.log(cruiser.sunk);
-console.log(board.createBoard());
-console.log(board.insertShip(cruiser));
 board.notHorizontal();
-console.log(board);
+console.log(cruiser.sunk);
+console.log(cruiser.length);
+console.log(board.insertShip(cruiser,2,2));
+console.log(board.grid[3][2]); // horizontal
+board.receieveAttack(2,3);
+console.log(board.grid[2][3]); // vertical
+board.receieveAttack(2,4);
+console.log(cruiser.hit);
